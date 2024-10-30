@@ -37,6 +37,49 @@
                     "title": "The --ibconnection Schema",
                     "type": "string"
                 },
+                "--ibcmd": {
+                    "default": false,
+                    "description": "Признак - не использовать кэш платформы для ускорения операций с базой,\nа также не надо добавлять базу в список баз 1C пользователя",
+                    "id": "/properties/default/properties/--nocacheuse",
+                    "title": "The --nocacheuse Schema",
+                    "type": "boolean"
+                },
+                "--dbms-pwd": {
+                    "default": "",
+                    "description": "Пароль СУБД.",
+                    "id": "/properties/default/properties/--dbms-pwd",
+                    "title": "The --dbms-pwd Schema",
+                    "type": "string"
+                },
+                "--dbms-user": {
+                    "default": "",
+                    "description": "Пользователь СУБД.",
+                    "id": "/properties/default/properties/--dbms-user",
+                    "title": "The --dbms-user Schema",
+                    "type": "string"
+                },
+                "--dbms-type": {
+                    "default": "MSSQLServer",
+                    "description": "Тип СУБД. Разрешенные значения:\n   * MSSQLServer\n   * PostgreSQL\n   * IBMDB2\n   * OracleDatabase\n",
+                    "id": "/properties/default/properties/--dbms-type",
+                    "title": "The --dbms-type Schema",
+                    "type": "string",
+                    "enum": ["MSSQLServer", "PostgreSQL", "IBMDB2", "OracleDatabase"]
+                },
+                "--dbms-base": {
+                    "default": "",
+                    "description": "Имя базы данных в СУБД",
+                    "id": "/properties/default/properties/--dbms-base",
+                    "title": "The --dbms-base Schema",
+                    "type": "string"
+                },
+                "--dbms-server": {
+                    "default": "",
+                    "description": "Имя сервера СУБД",
+                    "id": "/properties/default/properties/--dbms-server",
+                    "title": "The --dbms-server Schema",
+                    "type": "string"
+                },
                 "--ordinaryapp": {
                     "default": "-1",
                     "description": "Запуск толстого клиента (1 = толстый, 0 или -1 = тонкий клиент).\nПо умолчанию используется 0 (тонкий клиент).\nЗначение -1 может применяться в случаях, когда нужно прочитать лог работы 1С в режиме Предприятие в управляемом интерфейсе.",
@@ -125,28 +168,35 @@
             "description": "Общие параметры для запуска всех команд vanessa-runner.",
             "type": "object"
         },
-        "dbms-param":{
+        "init-dev":{
             "additionalProperties": false,
-            "id": "/properties/dbms-param",
+            "id": "/properties/init-dev",
             "properties": {
+                "--ibcmd": {
+                    "default": false,
+                    "description": "Признак - не использовать кэш платформы для ускорения операций с базой,\nа также не надо добавлять базу в список баз 1C пользователя",
+                    "id": "/properties/default/properties/--nocacheuse",
+                    "title": "The --nocacheuse Schema",
+                    "type": "boolean"
+                },
                 "--dbms-pwd": {
                     "default": "",
                     "description": "Пароль СУБД.",
-                    "id": "/properties/default/dbms-param/--dbms-pwd",
+                    "id": "/properties/default/init-dev/--dbms-pwd",
                     "title": "The --dbms-pwd Schema",
                     "type": "string"
                 },
                 "--dbms-user": {
                     "default": "",
                     "description": "Пользователь СУБД.",
-                    "id": "/properties/default/dbms-param/--dbms-user",
+                    "id": "/properties/default/init-dev/--dbms-user",
                     "title": "The --dbms-user Schema",
                     "type": "string"
                 },
                 "--dbms-type": {
                     "default": "MSSQLServer",
                     "description": "Тип СУБД. Разрешенные значения:\n   * MSSQLServer\n   * PostgreSQL\n   * IBMDB2\n   * OracleDatabase\n",
-                    "id": "/properties/default/dbms-param/--dbms-type",
+                    "id": "/properties/default/init-dev/--dbms-type",
                     "title": "The --dbms-type Schema",
                     "type": "string",
                     "enum": ["MSSQLServer", "PostgreSQL", "IBMDB2", "OracleDatabase"]
@@ -154,14 +204,14 @@
                 "--dbms-base": {
                     "default": "",
                     "description": "Имя базы данных в СУБД",
-                    "id": "/properties/default/dbms-param/--dbms-base",
+                    "id": "/properties/default/init-dev/--dbms-base",
                     "title": "The --dbms-base Schema",
                     "type": "string"
                 },
                 "--dbms-server": {
                     "default": "",
                     "description": "Имя сервера СУБД",
-                    "id": "/properties/default/dbms-param/--dbms-server",
+                    "id": "/properties/default/init-dev/--dbms-server",
                     "title": "The --dbms-server Schema",
                     "type": "string"
                 }
