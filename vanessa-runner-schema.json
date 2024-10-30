@@ -125,50 +125,6 @@
             "description": "Общие параметры для запуска всех команд vanessa-runner.",
             "type": "object"
         },
-        "dbms-param":{
-            "additionalProperties": false,
-            "id": "/properties/dbms-param",
-            "properties": {
-                "--dbms-pwd": {
-                    "default": "",
-                    "description": "Пароль СУБД.",
-                    "id": "/properties/default/dbms-param/--dbms-pwd",
-                    "title": "The --dbms-pwd Schema",
-                    "type": "string"
-                },
-                "--dbms-user": {
-                    "default": "",
-                    "description": "Пользователь СУБД.",
-                    "id": "/properties/default/dbms-param/--dbms-user",
-                    "title": "The --dbms-user Schema",
-                    "type": "string"
-                },
-                "--dbms-type": {
-                    "default": "MSSQLServer",
-                    "description": "Тип СУБД. Разрешенные значения:\n   * MSSQLServer\n   * PostgreSQL\n   * IBMDB2\n   * OracleDatabase\n",
-                    "id": "/properties/default/dbms-param/--dbms-type",
-                    "title": "The --dbms-type Schema",
-                    "type": "string",
-                    "enum": ["MSSQLServer", "PostgreSQL", "IBMDB2", "OracleDatabase"]
-                },
-                "--dbms-base": {
-                    "default": "",
-                    "description": "Имя базы данных в СУБД",
-                    "id": "/properties/default/dbms-param/--dbms-base",
-                    "title": "The --dbms-base Schema",
-                    "type": "string"
-                },
-                "--dbms-server": {
-                    "default": "",
-                    "description": "Имя сервера СУБД",
-                    "id": "/properties/default/dbms-param/--dbms-server",
-                    "title": "The --dbms-server Schema",
-                    "type": "string"
-                }
-            },
-            "description": "Параметры для подключения к СУБД",
-            "type": "object"          
-        },
         "vanessa": {
             "additionalProperties": false,
             "id": "/properties/vanessa",
