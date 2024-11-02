@@ -7,14 +7,15 @@
 
 Контекст:
 
+    Дано я подготовил репозиторий и рабочий каталог проекта
     И Я копирую каталог "feature" из каталога "tests/fixtures" проекта в подкаталог "build" рабочего каталога
     И Я копирую файл "vb-conf.json" из каталога "tests/fixtures/feature" проекта в подкаталог "build/" рабочего каталога
     И Я копирую файл "env.json" из каталога "tests/fixtures/feature" проекта в подкаталог "build/" рабочего каталога
     Дано файл "build/env.json" существует
     И файл "build/vb-conf.json" существует
     И Я очищаю параметры команды "oscript" в контексте
-    Дано я подготовил репозиторий и рабочий каталог проекта
     И я подготовил рабочую базу проекта "./build/ib" по умолчанию
+    И Я очищаю параметры команды "oscript" в контексте
 
 Сценарий: Запуск проверки поведения с паузой
     И Я создаю файл "./build/feature/пауза.feature" с текстом
@@ -27,8 +28,8 @@
     """
 
     Когда Я добавляю параметр "<КаталогПроекта>/src/main.os vanessa" для команды "oscript"
-    И Я добавляю параметр "--ibconnection /F./build/ib" для команды "oscript"
-    И Я добавляю параметр "--vanessasettings ./build/vb-conf.json" для команды "oscript"
+    И Я добавляю параметр "--ibconnection /Fbuild/ib" для команды "oscript"
+    И Я добавляю параметр "--vanessasettings build/vb-conf.json" для команды "oscript"
     И Я добавляю параметр "--path build/feature" для команды "oscript"
     И Я добавляю параметр "--language ru" для команды "oscript"
     Когда Я выполняю команду "oscript"
@@ -56,8 +57,8 @@
     """
 
     Когда Я добавляю параметр "<КаталогПроекта>/src/main.os vanessa" для команды "oscript"
-    И Я добавляю параметр "--ibconnection /F./build/ib" для команды "oscript"
-    И Я добавляю параметр "--vanessasettings ./build/vb-conf.json" для команды "oscript"
+    И Я добавляю параметр "--ibconnection /Fbuild/ib" для команды "oscript"
+    И Я добавляю параметр "--vanessasettings build/vb-conf.json" для команды "oscript"
     И Я добавляю параметр "--path build/feature" для команды "oscript"
     И Я добавляю параметр "--language ru" для команды "oscript"
     Когда Я выполняю команду "oscript"
