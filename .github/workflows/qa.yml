@@ -2,7 +2,7 @@ name: Контроль качества
 
 on:
   push:
-  pull_request:
+  pull_request_target:
   workflow_dispatch:
 
 jobs:
@@ -19,6 +19,8 @@ jobs:
       - name: Актуализация
         uses: actions/checkout@v4
         with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Вычисление имени ветки
@@ -116,19 +118,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONARQUBE_HOST: ${{ secrets.SONARQUBE_HOST }}
         run: sonar-scanner
-          -Dsonar.host.url=https://sonar.1cdevelopers.ru/
+          -Dsonar.host.url=${{ env.SONARQUBE_HOST }}
           -Dsonar.branch.name=${{ env.BRANCH_NAME }}
           -Dsonar.projectVersion=${{ steps.extract_version.outputs.version }}
 
       # https://docs.sonarqube.org/latest/analysis/pull-request/
       - name: Анализ в SonarQube (pull-request)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request_target'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONARQUBE_HOST: ${{ secrets.SONARQUBE_HOST }}
         run: sonar-scanner
-          -Dsonar.host.url=https://sonar.1cdevelopers.ru/
+          -Dsonar.host.url=${{ env.SONARQUBE_HOST }}
           -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
           -Dsonar.pullrequest.branch=${{ github.event.pull_request.head.ref }}
           -Dsonar.pullrequest.base=${{ github.event.pull_request.base.ref }}

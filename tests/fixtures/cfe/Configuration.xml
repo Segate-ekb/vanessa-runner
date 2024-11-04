@@ -28,17 +28,17 @@
 			</xr:ContainedObject>
 		</InternalInfo>
 		<Properties>
-			<Name>Расширение1</Name>
+			<Name>test</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Расширение1</v8:content>
+					<v8:content>test</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
 			<ConfigurationExtensionPurpose>Customization</ConfigurationExtensionPurpose>
 			<ObjectBelonging>Adopted</ObjectBelonging>
-			<NamePrefix>Расш1_</NamePrefix>
+			<NamePrefix>Ext1_</NamePrefix>
 			<ConfigurationExtensionCompatibilityMode>Version8_3_10</ConfigurationExtensionCompatibilityMode>
 			<DefaultRunMode>ManagedApplication</DefaultRunMode>
 			<UsePurposes>

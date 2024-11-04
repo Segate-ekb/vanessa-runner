@@ -63,7 +63,7 @@
     Тогда Файл "./cf/lastUploadedCommit.txt" существует
     # И я показываю текст файла "./cf/lastUploadedCommit.txt"
 
-    Когда Я выполняю команду "echo" с параметрами 'Сообщить("Управляемое приложение"); A=1; >> ./cf/Ext/ManagedApplicationModule.bsl'
+    Когда Я выполняю команду "echo" с параметрами '"A=1;" >> ./cf/Ext/ManagedApplicationModule.bsl'
     Когда Я выполняю команду "git" с параметрами "status"
         И я показываю вывод команды
     Тогда Вывод команды "git" содержит "modified:   cf/Ext/ManagedApplicationModule.bsl"
