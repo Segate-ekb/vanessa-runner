@@ -12,16 +12,16 @@
 Сценарий: Выгрузка одного расширения из базы
     
     Допустим Я копирую каталог "cfe" из каталога "tests/fixtures" проекта в рабочий каталог
-    И Я копирую файл "Extension1.cfe" из каталога "tests/fixtures" проекта в рабочий каталог
+    И Я копирую файл "test.cfe" из каталога "tests/fixtures" проекта в рабочий каталог
     И Я очищаю параметры команды "oscript" в контексте
-    И Я выполняю команду "oscript" с параметрами "<КаталогПроекта>/src/main.os compileext cfe РасширениеНовое1 --ibconnection /F./build/ib --language ru"
+    И Я выполняю команду "oscript" с параметрами "<КаталогПроекта>/src/main.os compileext cfe testNew --ibconnection /F./build/ib --language ru"
     И Я показываю вывод команды
     Тогда Код возврата равен 0
     И Я очищаю параметры команды "oscript" в контексте
     
-    Когда Я выполняю команду "oscript" с параметрами "<КаталогПроекта>/src/main.os unloadext ./РасширениеНовое1.cfe РасширениеНовое1 --ibconnection /F./build/ib --language ru"
+    Когда Я выполняю команду "oscript" с параметрами "<КаталогПроекта>/src/main.os unloadext ./testNew.cfe testNew --ibconnection /F./build/ib --language ru"
     И Я показываю вывод команды
     Тогда Код возврата равен 0
-    И Файл "./РасширениеНовое1.cfe" существует
+    И Файл "./testNew.cfe" существует
 
 # TODO Сценарий: Разборка нескольких расширений с явно заданной базой
