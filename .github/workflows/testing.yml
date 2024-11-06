@@ -138,7 +138,10 @@ jobs:
       - name: Тестирование(Windows)
         if: matrix.v8_version != '' && matrix.os == 'windows-latest'
         continue-on-error: true
-        run: oscript ./tasks/test.os
+        run:  |
+          @chcp 65001
+          
+          oscript ./tasks/test.os
         shell: cmd
 
       - name: Publish Test Report
