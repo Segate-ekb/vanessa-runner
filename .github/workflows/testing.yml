@@ -50,6 +50,22 @@ jobs:
         uses: otymko/setup-onescript@v1.4
         with:
           version: ${{ steps.extract_oscript_version.outputs.version }}
+      
+      - name: Set Russian locale
+        if: matrix.v8_version != '' && matrix.os == 'windows-latest'
+        run: |
+          powershell -Command "Set-WinUILanguageOverride -Language ru-RU"
+          powershell -Command "Set-WinUserLanguageList ru-RU -Force"
+          powershell -Command "Set-Culture ru-RU"
+          powershell -Command "Set-WinSystemLocale ru-RU"
+  
+      - name: Verify locale settings
+        if: matrix.v8_version != '' && matrix.os == 'windows-latest'
+        run: |
+          powershell -Command "Get-WinUILanguageOverride"
+          powershell -Command "Get-WinUserLanguageList"
+          powershell -Command "Get-Culture"
+          powershell -Command "Get-WinSystemLocale"
 
       - name: Установка зависимостей
         run: |
