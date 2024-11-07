@@ -129,20 +129,11 @@ jobs:
         shell: pwsh           
 
       - name: Тестирование(Linux)
-        if: matrix.v8_version != '' && matrix.os == 'ubuntu-latest'
         uses: coactions/setup-xvfb@v1
         continue-on-error: true
         with:
           run: oscript ./tasks/test.os
 
-      - name: Тестирование(Windows)
-        if: matrix.v8_version != '' && matrix.os == 'windows-latest'
-        continue-on-error: true
-        run:  |
-          @chcp 65001
-          
-          oscript ./tasks/test.os
-        shell: cmd
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
