@@ -39,7 +39,7 @@
                 },
                 "--ibcmd": {
                     "default": false,
-                    "description": "Признак - не использовать кэш платформы для ускорения операций с базой,\nа также не надо добавлять базу в список баз 1C пользователя",
+                    "description": "Признак использования утилиты ibcmd для выполнения операций с базой.",
                     "id": "/properties/default/properties/--nocacheuse",
                     "title": "The --nocacheuse Schema",
                     "type": "boolean"
@@ -174,7 +174,7 @@
             "properties": {
                 "--ibcmd": {
                     "default": false,
-                    "description": "Признак - не использовать кэш платформы для ускорения операций с базой,\nа также не надо добавлять базу в список баз 1C пользователя",
+                    "description": "Признак использования утилиты ibcmd для выполнения операций с базой.",
                     "id": "/properties/default/properties/--nocacheuse",
                     "title": "The --nocacheuse Schema",
                     "type": "boolean"
