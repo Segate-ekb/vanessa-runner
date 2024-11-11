@@ -2,9 +2,14 @@ name: Тестирование
 
 on:
   push:
+    
   pull_request_target:
   workflow_dispatch:
-
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+  
 permissions:
   checks: write
   pull-requests: write
