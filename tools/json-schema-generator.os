@@ -44,8 +44,14 @@
 		ИнформацияПоКомандам.Вставить(ИнформацияОКоманде.Команда, СхемаКоманды);
 		
 	КонецЦикла;
-	ИнформацияПоКомандам.Вставить("default", ИнформацияОПараметрахПоУмолчанию);
+	
 	// BSLLS-off
+	ИнформацияПоКомандам.Вставить("default", Новый Структура("description, id, type, properties",
+																"Default settings",
+																"/properties/default",
+																"object",
+																ИнформацияОПараметрахПоУмолчанию));
+
 	ИнформацияПоКомандам.Вставить("$schema", Новый Структура("default, description, id, type",
 																"vanessa-runner-schema.json",
 																"Path of vanessa-runner-schema.json.", 
