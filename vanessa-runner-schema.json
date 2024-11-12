@@ -4056,6 +4056,12 @@
 				"default": false,
 				"title": "The --check-module Schema"
 			}
+		},
+		"$schema": {
+			"default": "vanessa-runner-schema.json",
+			"description": "Path of vanessa-runner-schema.json.",
+			"id": "/properties/$schema",
+			"type": "string"
 		}
 	}
 }
