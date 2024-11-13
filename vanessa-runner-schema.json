@@ -8281,6 +8281,13 @@
 			"id": "/properties/default",
 			"type": "object",
 			"properties": {
+				"Команда": {
+					"description": "Имя команды, для которой выводится справка",
+					"id": "/properties/default/команда",
+					"title": "The Команда Schema",
+					"type": "string",
+					"default": ""
+				},
 				"--ibconnection": {
 					"description": "Строка подключения к БД (/FfilePath или /SserverPath)\n\tНапример, для файловых баз --ibconnection /FC:\\base1 или --ibconnection /F./base1 или --ibconnection /Fbase1\n\tИли для серверных баз --ibconnection /Sservername\\basename",
 					"id": "/properties/default/--ibconnection",
@@ -8306,6 +8313,13 @@
 					"description": "Версия платформы",
 					"id": "/properties/default/--v8version",
 					"title": "The --v8version Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--bitness": {
+					"description": "Разрядность платформы 1С. Варианты: x64,x86,x64x86,x86x64",
+					"id": "/properties/default/--bitness",
+					"title": "The --bitness Schema",
 					"type": "string",
 					"default": ""
 				},
@@ -8336,6 +8350,13 @@
 					"title": "The --nocacheuse Schema",
 					"type": "boolean",
 					"default": false
+				},
+				"--ibname": {
+					"description": "(устарело) Строка подключения к БД",
+					"id": "/properties/default/--ibname",
+					"title": "The --ibname Schema",
+					"type": "string",
+					"default": ""
 				},
 				"--language": {
 					"description": "Код языка запуска платформы",
@@ -8376,6 +8397,90 @@
 					"description": "Вывод отладочных файлов в лог-файл 'vrunner-XXX.log' во временном каталоге пользователя. ",
 					"id": "/properties/default/--debuglog",
 					"title": "The --debuglog Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--template": {
+					"description": "Ссылка на шаблон, из которого будет клонироваться проект",
+					"id": "/properties/default/--template",
+					"title": "The --template Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--src": {
+					"description": "Путь Configuration.xml или Configuration.mdo или каталога, содержащего любой из этих файлов,\nили корневого каталога для поиска в подкаталогах - для исходников конфигурации или расширения\nЕсли указан флаг --check-module, тогда в параметре передается путь к указанным модулям или к каталогам\\подкаталогам с модулями\nи будут анализируются только указанные модули кода!",
+					"id": "/properties/default/--src",
+					"title": "The --src Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--dt": {
+					"description": "Путь к файлу с dt выгрузкой",
+					"id": "/properties/default/--dt",
+					"title": "The --dt Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--cf": {
+					"description": "Путь к cf-файлу конфигурации\n       В пути файла можно указать шаблонную переменную $version для подстановки в нее версии конфигурации\n       Пример: 1Cv8_$version.cf выгрузит файл вида 1Cv8_1.2.3.4.cf",
+					"id": "/properties/default/--cf",
+					"title": "The --cf Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--dev": {
+					"description": "Признак dev режима, создаем и загружаем автоматом структуру конфигурации",
+					"id": "/properties/default/--dev",
+					"title": "The --dev Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--storage": {
+					"description": "Признак обновления из хранилища",
+					"id": "/properties/default/--storage",
+					"title": "The --storage Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--storage-name": {
+					"description": "Строка подключения к хранилищу",
+					"id": "/properties/default/--storage-name",
+					"title": "The --storage-name Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--storage-user": {
+					"description": "Пользователь хранилища",
+					"id": "/properties/default/--storage-user",
+					"title": "The --storage-user Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--storage-pwd": {
+					"description": "Пароль",
+					"id": "/properties/default/--storage-pwd",
+					"title": "The --storage-pwd Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--storage-ver": {
+					"description": "Номер версии, по умолчанию берем последнюю",
+					"id": "/properties/default/--storage-ver",
+					"title": "The --storage-ver Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--v1": {
+					"description": "Поддержка режима реструктуризации -v1 на сервере",
+					"id": "/properties/default/--v1",
+					"title": "The --v1 Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--v2": {
+					"description": "Поддержка режима реструктуризации -v2 на сервере",
+					"id": "/properties/default/--v2",
+					"title": "The --v2 Schema",
 					"type": "boolean",
 					"default": false
 				},
@@ -8421,12 +8526,948 @@
 					"type": "string",
 					"default": ""
 				},
+				"--disable-support": {
+					"description": "Флаг запрета установки конфигурации на поддержку, даже если есть возможность поставки на поддержку",
+					"id": "/properties/default/--disable-support",
+					"title": "The --disable-support Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--git-increment": {
+					"description": "Инкременальная загрузка по git diff\n\tСхема работы\n \t\tПри загрузке в каталоге исходников (--src) ищется файл\n \t\tlastUploadedCommit.txt (необходимо добавить в .gitignore).\n \t\tЕсли файл найден, получается дифф изменений относительно\n \t\tпоследнего загруженного коммиту к HEAD.\n \t\tЕсли файл не найден, происходит полная загрузка.\n \t\tПосле загрузки создается\\обновляется файл lastUploadedCommit.txt\n",
+					"id": "/properties/default/--git-increment",
+					"title": "The --git-increment Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"testsPath": {
+					"description": "[env RUNNER_TESTSPATH] или Путь 1) к каталогу или к файлу с тестами - tests\\ТестыПродаж или tests\\ТестыПродаж\\ТестОптовойПродажи.epf\n   Можно использовать переменную $addRoot, означающую каталог установки библиотеки Vanessa-ADD. Например, $addRoot/tests/smoke для запуска дымовых тестов.\nили 2) к встроенным тестам (общие модули из тестовых расширений или подсистемы\\обработки из конфигурации), если явно указан ключ --config-tests.\nЕсли тесты в виде общих клиентских или серверных модулей в расширениях\\конфигурации, то указать просто имя расширения или имя конфигурации. например, Тесты_Продажи или ADD_TDD.\nВозможные варианты указания подсистемы или конкретного теста:\n\tМетаданные.Подсистемы.Тестовая или Метаданные.Подсистемы.Тестовая.Подсистемы.Подсистема1 или Метаданные.Обработки.Тест",
+					"id": "/properties/default/testspath",
+					"title": "The testsPath Schema",
+					"type": "string",
+					"default": ""
+				},
 				"--workspace": {
 					"description": "[env RUNNER_WORKSPACE] путь к папке, относительно которой будут определятся макросы $workspace.\n                 по умолчанию текущий.",
 					"id": "/properties/default/--workspace",
 					"title": "The --workspace Schema",
 					"type": "string",
 					"default": ""
+				},
+				"--config-tests": {
+					"description": "[env RUNNER_CONFIG_TESTS] загружать тесты, встроенные в конфигурации в указанную подсистему в виде обработок",
+					"id": "/properties/default/--config-tests",
+					"title": "The --config-tests Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--pathxunit": {
+					"description": "[env RUNNER_PATHXUNIT] путь к внешней обработке, по умолчанию ищу в пакете vanessa-add",
+					"id": "/properties/default/--pathxunit",
+					"title": "The --pathxunit Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--reportsxunit": {
+					"description": "    --reportsxunit параметры формирования отчетов в формате вида:      ФорматВыводаОтчета{Путь к файлу отчета};ФорматВыводаОтчета{Путь к файлу отчета}...      Пример:\t\t\t\t\t\t\tГенераторОтчетаJUnitXML{build/junit.xml};ГенераторОтчетаAllureXML{build/allure.xml}      Пример (англоязычный вариант):\tGenerateReportJUnitXML{build/junit.xml};GenerateReportAllureXML{build/allure.xml}",
+					"id": "/properties/default/--reportsxunit",
+					"title": "The --reportsxunit Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--clear-reports": {
+					"description": "Очищать каталоги отчетов перед проверкой",
+					"id": "/properties/default/--clear-reports",
+					"title": "The --clear-reports Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--xddExitCodePath": {
+					"description": "путь к текстовому файлу, обозначающему статус выполнению.    Внутри файла строка-значение 0 (тесты пройдены), 1 (тесты не пройдены)",
+					"id": "/properties/default/--xddexitcodepath",
+					"title": "The --xddExitCodePath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--xddConfig": {
+					"description": "Путь к конфигурационному файлу xUnitFor1c",
+					"id": "/properties/default/--xddconfig",
+					"title": "The --xddConfig Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--testclient": {
+					"description": "Параметры подключения к тест-клиенту вида --testclient ИмяПользователя:Пароль:Порт    Пример 1: --testclient Администратор:пароль:1538    Пример 2: --testclient ::1538 (клиент тестирования будет запущен с реквизитами менеджера тестирования)",
+					"id": "/properties/default/--testclient",
+					"title": "The --testclient Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--testclient-additional": {
+					"description": "Дополнительные параметры, передаваемые приложению 1С при запуске тест-клиента",
+					"id": "/properties/default/--testclient-additional",
+					"title": "The --testclient-additional Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--reportxunit": {
+					"description": "путь к каталогу с отчетом jUnit (устарел)",
+					"id": "/properties/default/--reportxunit",
+					"title": "The --reportxunit Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--no-wait": {
+					"description": "Не ожидать завершения запущенной команды/действия",
+					"id": "/properties/default/--no-wait",
+					"title": "The --no-wait Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--xdddebug": {
+					"description": "Выводить отладочные сообщения при прогоне тестов",
+					"id": "/properties/default/--xdddebug",
+					"title": "The --xdddebug Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--no-shutdown": {
+					"description": "Не завершать работу 1С:Предприятие после выполнения тестов",
+					"id": "/properties/default/--no-shutdown",
+					"title": "The --no-shutdown Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--path": {
+					"description": "Путь для запуска тестов\nМожно указывать как каталог с фичами, так и конкретную фичу",
+					"id": "/properties/default/--path",
+					"title": "The --path Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--pathvanessa": {
+					"description": "[env RUNNER_PATHVANESSA] путь к внешней обработке, по умолчанию <OneScript>/lib/add/bddRunner.epf\n           или переменная окружения RUNNER_PATHVANESSA",
+					"id": "/properties/default/--pathvanessa",
+					"title": "The --pathvanessa Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--vanessasettings": {
+					"description": "[env RUNNER_VANESSASETTINGS] путь к файлу настроек фреймворка тестирования",
+					"id": "/properties/default/--vanessasettings",
+					"title": "The --vanessasettings Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--tags-ignore": {
+					"description": "Теги игнорирования фича-файлов",
+					"id": "/properties/default/--tags-ignore",
+					"title": "The --tags-ignore Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--tags-filter": {
+					"description": "Теги отбор фича-файлов",
+					"id": "/properties/default/--tags-filter",
+					"title": "The --tags-filter Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--additional-keys": {
+					"description": "Дополнительные параметры, передаваемые в параметр /С.",
+					"id": "/properties/default/--additional-keys",
+					"title": "The --additional-keys Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--command": {
+					"description": "Строка, передаваемая в ПараметрыЗапуска /C''",
+					"id": "/properties/default/--command",
+					"title": "The --command Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--execute": {
+					"description": "Путь внешней обработки 1С для запуска в предприятии\n  Разрешено использовать переменную $runnerRoot для указания пути к каталогу vanessa-runner.\n  В этом случае можно использовать обработки из vanessa-runner.\n  vrunner run --command \"Путь=МойКаталог;ЗавершитьРаботуСистемы\" --execute $runnerRoot/epf/ЗагрузитьРасширениеВРежимеПредприятия.epf",
+					"id": "/properties/default/--execute",
+					"title": "The --execute Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--url": {
+					"description": "Навигационная ссылка для перехода после старта 1С:Предприятия",
+					"id": "/properties/default/--url",
+					"title": "The --url Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--online-file": {
+					"description": "Путь к файлу с online-записью выполнения",
+					"id": "/properties/default/--online-file",
+					"title": "The --online-file Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--exitCodePath": {
+					"description": "Путь к текстовому файлу, обозначающему статус выполнения.\n  Отсутствие файла после выполнения задания означает ошибку запуска.\n  Значение \"0\" означает успешное выполнение запуска.\n  Значение \"1\" означает ошибку при выполнении запуска.\n  Значение \"2\" означает выполнение запуска с предупреждением.\n  Любое другое значение эквивалентно отсутствию файла.",
+					"id": "/properties/default/--exitcodepath",
+					"title": "The --exitCodePath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"inputPath": {
+					"description": "Путь к каталогу или внешней обработке\n\nСхема работы:\n\t\tВ каталоге выгрузки создается отдельный подкаталог для каждой внешней обработки.\n\t\tСохраняется структура подкаталогов, если выгружается каталог.\n",
+					"id": "/properties/default/inputpath",
+					"title": "The inputPath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"extensionName": {
+					"description": "Имя расширения, под которым оно зарегистрировано в списке расширений",
+					"id": "/properties/default/extensionname",
+					"title": "The extensionName Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--updatedb": {
+					"description": "Признак обновления расширения",
+					"id": "/properties/default/--updatedb",
+					"title": "The --updatedb Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--file": {
+					"description": "Путь к cfe-файлу расширения, например: --file=./1Cv8.cfe",
+					"id": "/properties/default/--file",
+					"title": "The --file Schema",
+					"type": "string",
+					"default": ""
+				},
+				"-f": {
+					"description": "Краткая команда 'путь к cfe --file', пример: -f ./1Cv8.cfe\n       В пути файла можно указать шаблонную переменную $version для подстановки в нее версии конфигурации\n       Пример: 1Cv8_$version.cfе выгрузит файл вида 1Cv8_1.2.3.4.cfе",
+					"id": "/properties/default/-f",
+					"title": "The -f Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--extension": {
+					"description": "Имя расширения",
+					"id": "/properties/default/--extension",
+					"title": "The --extension Schema",
+					"type": "string",
+					"default": ""
+				},
+				"-s": {
+					"description": "Краткий псевдоним для команды `--src', пример: -s ./1Cv8.cf",
+					"id": "/properties/default/-s",
+					"title": "The -s Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--out": {
+					"description": "Путь к каталогу с исходниками, пример: --out=./cf",
+					"id": "/properties/default/--out",
+					"title": "The --out Schema",
+					"type": "string",
+					"default": ""
+				},
+				"-o": {
+					"description": "Краткая команда 'путь к исходникам --out', пример: -o ./cf",
+					"id": "/properties/default/-o",
+					"title": "The -o Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--current": {
+					"description": "Флаг выгрузки из текущей базы или -с",
+					"id": "/properties/default/--current",
+					"title": "The --current Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"-c": {
+					"description": "Флаг выгрузки из текущей базы, краткая форма от --current",
+					"id": "/properties/default/-c",
+					"title": "The -c Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--noupdate": {
+					"description": "Флаг обновления СonfigDumpInfo.xml",
+					"id": "/properties/default/--noupdate",
+					"title": "The --noupdate Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--build-number": {
+					"description": "Номер сборки для установки в последний разряд номера версии",
+					"id": "/properties/default/--build-number",
+					"title": "The --build-number Schema",
+					"type": "string",
+					"default": ""
+				},
+				"outputPath": {
+					"description": "Путь исходников",
+					"id": "/properties/default/outputpath",
+					"title": "The outputPath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"cfepath": {
+					"description": "Путь к результату - выгружаемому файлу расширения (*.cfe)",
+					"id": "/properties/default/cfepath",
+					"title": "The cfepath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"extname": {
+					"description": "Имя расширения",
+					"id": "/properties/default/extname",
+					"title": "The extname Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--cachekey": {
+					"description": "Ключ кэшированных значений файлов, default: compileepfrunner",
+					"id": "/properties/default/--cachekey",
+					"title": "The --cachekey Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--onlycopy": {
+					"description": "Флаг, только копировать. Без сборки обработки, даже если выглядит как обработка",
+					"id": "/properties/default/--onlycopy",
+					"title": "The --onlycopy Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--dynamic": {
+					"description": "Динамическое обновление конфигурации",
+					"id": "/properties/default/--dynamic",
+					"title": "The --dynamic Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"cfpath": {
+					"description": "Путь к результату - выгружаемому файлу поставки конфигурации (*.cf)\nВ пути файла можно указать шаблонную переменную $version для подстановки в нее версии конфигурации\nПример: 1Cv8_$version.cf выгрузит файл вида 1Cv8_1.2.3.4.cf",
+					"id": "/properties/default/cfpath",
+					"title": "The cfpath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"dtpath": {
+					"description": "Путь к файлу с данными информационной базы (*.dt)",
+					"id": "/properties/default/dtpath",
+					"title": "The dtpath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--JobsCount ": {
+					"description": "Количество заданий для загрузки информационной базы. Значение по умолчанию ‑ 0, что означает, будет столько заданий, сколько и процессоров.\n Работает только для клиент-серверной ИБ.",
+					"id": "/properties/default/--jobscount ",
+					"title": "The --JobsCount  Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--ras": {
+					"description": "Сетевой адрес RAS, по умолчанию localhost:1545",
+					"id": "/properties/default/--ras",
+					"title": "The --ras Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--rac": {
+					"description": "Команда запуска RAC, по умолчанию находим в каталоге установки 1с",
+					"id": "/properties/default/--rac",
+					"title": "The --rac Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--name": {
+					"description": "Имя информационной базы. Обязательный.",
+					"id": "/properties/default/--name",
+					"title": "The --name Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--dbms": {
+					"description": "тип СУБД, в которой размещается информационная база. Обязательный. MSSQLServer|PostgreSQL|IBMDB2|OracleDatabase",
+					"id": "/properties/default/--dbms",
+					"title": "The --dbms Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--db-server": {
+					"description": "Имя сервера БД. Обязательный.",
+					"id": "/properties/default/--db-server",
+					"title": "The --db-server Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--db-name": {
+					"description": "Имя базы данных. Необязательный. По умолчанию устанавливается в имя ИБ из --name.",
+					"id": "/properties/default/--db-name",
+					"title": "The --db-name Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--db-admin": {
+					"description": "Пользователь БД. Обязательный.",
+					"id": "/properties/default/--db-admin",
+					"title": "The --db-admin Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--db-admin-pwd": {
+					"description": "Пароль пользователя БД. Обязательный.",
+					"id": "/properties/default/--db-admin-pwd",
+					"title": "The --db-admin-pwd Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--descr": {
+					"description": "Описание ИБ",
+					"id": "/properties/default/--descr",
+					"title": "The --descr Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--db-locale": {
+					"description": "Идентификатор национальных настроек информационной базы. По умолчанию ru",
+					"id": "/properties/default/--db-locale",
+					"title": "The --db-locale Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--cluster-admin": {
+					"description": "[env RUNNER_CLUSTERADMIN_USER] Администратор кластера",
+					"id": "/properties/default/--cluster-admin",
+					"title": "The --cluster-admin Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--cluster-pwd": {
+					"description": "[env RUNNER_CLUSTERADMIN_PWD] Пароль администратора кластера",
+					"id": "/properties/default/--cluster-pwd",
+					"title": "The --cluster-pwd Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--cluster": {
+					"description": "Идентификатор кластера",
+					"id": "/properties/default/--cluster",
+					"title": "The --cluster Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--cluster-name": {
+					"description": "Имя кластера",
+					"id": "/properties/default/--cluster-name",
+					"title": "The --cluster-name Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--create-database-deny": {
+					"description": "При создании информационной базы не создавать БД. По умолчанию БД создается",
+					"id": "/properties/default/--create-database-deny",
+					"title": "The --create-database-deny Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--date-offset": {
+					"description": "Смещение дат в ИБ. По умолчанию 2000.",
+					"id": "/properties/default/--date-offset",
+					"title": "The --date-offset Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--security-level": {
+					"description": "Уровень безопасности установки соединений с ИБ",
+					"id": "/properties/default/--security-level",
+					"title": "The --security-level Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--scheduled-jobs-deny": {
+					"description": "Выполнение регламентных заданий запрещено. По умолчанию регламентные задания разрешены",
+					"id": "/properties/default/--scheduled-jobs-deny",
+					"title": "The --scheduled-jobs-deny Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--license-distribution-deny": {
+					"description": "Выдача лицензий сервером 1С запрещена. По умолчанию выдача лицензий разрешена.",
+					"id": "/properties/default/--license-distribution-deny",
+					"title": "The --license-distribution-deny Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--drop-database": {
+					"description": "Удалить базу данных при удалении информационной базы. По умолчанию БД не удаляется.",
+					"id": "/properties/default/--drop-database",
+					"title": "The --drop-database Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--clear-database": {
+					"description": "Очистить базу данных при удалении информационной базы. По умолчанию не очищается",
+					"id": "/properties/default/--clear-database",
+					"title": "The --clear-database Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"ПутьСоздаваемогоХранилища": {
+					"description": "Строка подключения к хранилищу\n\t(возможно указание как файлового пути, так и пути через http или tcp)",
+					"id": "/properties/default/путьсоздаваемогохранилища",
+					"title": "The ПутьСоздаваемогоХранилища Schema",
+					"type": "string",
+					"default": ""
+				},
+				"ЛогинАдминистратора": {
+					"description": "Логин администратора хранилища 1С",
+					"id": "/properties/default/логинадминистратора",
+					"title": "The ЛогинАдминистратора Schema",
+					"type": "string",
+					"default": ""
+				},
+				"ПарольАдминистратора": {
+					"description": "Пароль администратора хранилища 1С",
+					"id": "/properties/default/парольадминистратора",
+					"title": "The ПарольАдминистратора Schema",
+					"type": "string",
+					"default": ""
+				},
+				"ПутьПодключаемогоХранилища": {
+					"description": "Строка подключения к хранилищу, куда копируем\n\t(возможно указание как файлового пути, так и пути через http или tcp)",
+					"id": "/properties/default/путьподключаемогохранилища",
+					"title": "The ПутьПодключаемогоХранилища Schema",
+					"type": "string",
+					"default": ""
+				},
+				"Логин": {
+					"description": "Логин пользователя хранилища 1С",
+					"id": "/properties/default/логин",
+					"title": "The Логин Schema",
+					"type": "string",
+					"default": ""
+				},
+				"Пароль": {
+					"description": "Пароль пользователя хранилища 1С",
+					"id": "/properties/default/пароль",
+					"title": "The Пароль Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--BindAlreadyBindedUser": {
+					"description": " Флаг игнорирования наличия уже у пользователя уже подключенной базы данных.",
+					"id": "/properties/default/--bindalreadybindeduser",
+					"title": "The --BindAlreadyBindedUser Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--NotReplaceCfg": {
+					"description": "Флаг запрета замены конфигурации БД на конфигурацию хранилища.",
+					"id": "/properties/default/--notreplacecfg",
+					"title": "The --NotReplaceCfg Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--storage-role": {
+					"description": "Назначаемая роль. Возможные варианты:\n\tReadOnly - право на просмотр,\n\tLockObjects - право на захват объектов,\n\tManageConfigurationVersions - право на изменение состава версий,\n\tAdministration - право на административные функции.\n\nОбязательный параметр",
+					"id": "/properties/default/--storage-role",
+					"title": "The --storage-role Schema",
+					"type": "string",
+					"default": ""
+				},
+				"ПутьПодключаемогоХранилищаДляКопирования": {
+					"description": "Строка подключения к хранилищу, из которого копируются пользователи\n\t(возможно указание как файлового пути, так и пути через http или tcp)",
+					"id": "/properties/default/путьподключаемогохранилищадлякопирования",
+					"title": "The ПутьПодключаемогоХранилищаДляКопирования Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--storage-user-copy": {
+					"description": "Пользователь хранилища, из которого идет копирование.\n\tОбязательный параметр",
+					"id": "/properties/default/--storage-user-copy",
+					"title": "The --storage-user-copy Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--storage-pwd-copy": {
+					"description": "Пароль этого пользователя.\n\tОбязательный параметр",
+					"id": "/properties/default/--storage-pwd-copy",
+					"title": "The --storage-pwd-copy Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--objects": {
+					"description": "Имя файла со списком объектов.\n              Путь к файлу формата XML со списком объектов.\n              Если опция используется, будет выполнена попытка отменить захват только для объектов, указанных в файле.\n              Если опция не используется, захват будет отменен для всех объектов конфигурации.\n              При наличии в списке объектов, не захваченных текущим пользователем или захваченных другим пользователем, ошибка выдана не будет.\n              Подробнее о формате файла см в документации https://its.1c.ru/db/v8324doc#bookmark:adm:TI000000698 .",
+					"id": "/properties/default/--objects",
+					"title": "The --objects Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--revised": {
+					"description": "Получать захваченные объекты",
+					"id": "/properties/default/--revised",
+					"title": "The --revised Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--comment": {
+					"description": "Текст комментария",
+					"id": "/properties/default/--comment",
+					"title": "The --comment Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--keepLocked": {
+					"description": "Оставлять захват для помещенных объектов",
+					"id": "/properties/default/--keeplocked",
+					"title": "The --keepLocked Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--force": {
+					"description": "Флаг принудительного обновления",
+					"id": "/properties/default/--force",
+					"title": "The --force Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--do-not-update": {
+					"description": "Не обновлять конфигурацию из хранилища.\n              Значительно ускоряет процесс отмены захвата объектов хранилища. Может вызывать ошибки при использовании \n              --objects со списком объектов",
+					"id": "/properties/default/--do-not-update",
+					"title": "The --do-not-update Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--list": {
+					"description": "Список файлов для загрузки",
+					"id": "/properties/default/--list",
+					"title": "The --list Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--in": {
+					"description": "Путь к файлу cf (*.cf), --in=./1Cv8.cf",
+					"id": "/properties/default/--in",
+					"title": "The --in Schema",
+					"type": "string",
+					"default": ""
+				},
+				"-i": {
+					"description": "Краткая команда 'Путь к файлу cf --in', пример: -i ./1Cv8.cf",
+					"id": "/properties/default/-i",
+					"title": "The -i Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--userenames": {
+					"description": "Использовать файл переименований renames",
+					"id": "/properties/default/--userenames",
+					"title": "The --userenames Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"-v": {
+					"description": "Путь к файлу версии (ConfigDumpInfo.xml или его копия), краткая от --versions",
+					"id": "/properties/default/-v",
+					"title": "The -v Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--versions": {
+					"description": "Путь к файлу версии (ConfigDumpInfo.xml или его копия) или -v",
+					"id": "/properties/default/--versions",
+					"title": "The --versions Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--merge-settings": {
+					"description": "Файл с настройками объединения конфигураций (обязательный параметр)",
+					"id": "/properties/default/--merge-settings",
+					"title": "The --merge-settings Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--enable-support": {
+					"description": "Флаг необходимости установки конфигурации на поддержку, если есть возможность поставки на поддержку",
+					"id": "/properties/default/--enable-support",
+					"title": "The --enable-support Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--IncludeObjectsByUnresolvedRefs": {
+					"description": "Флаг небходимости включения в объединение объектов,\nне включенных в список объединяемых и отсутствующих в основной конфигурации",
+					"id": "/properties/default/--includeobjectsbyunresolvedrefs",
+					"title": "The --IncludeObjectsByUnresolvedRefs Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--ClearUnresolvedRefs": {
+					"description": "Флаг очистки ссылок на объекты, не включенные в список объединяемых",
+					"id": "/properties/default/--clearunresolvedrefs",
+					"title": "The --ClearUnresolvedRefs Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--update-settings": {
+					"description": "Файл с настройками объединения конфигураций (обязательный параметр)",
+					"id": "/properties/default/--update-settings",
+					"title": "The --update-settings Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--DumpListOfTwiceChangedProperties": {
+					"description": "Флаг вывода списка всех дважды измененных свойств в файл служебных сообщений 1С.",
+					"id": "/properties/default/--dumplistoftwicechangedproperties",
+					"title": "The --DumpListOfTwiceChangedProperties Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--secondFile": {
+					"description": "Путь к файлу cf/cfe, с которым идёт сравнение конфигурации. Обязательный параметр.",
+					"id": "/properties/default/--secondfile",
+					"title": "The --secondFile Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--reportFile": {
+					"description": "Путь к файлу, где должен быть сохранён отчет. Обязательный параметр.",
+					"id": "/properties/default/--reportfile",
+					"title": "The --reportFile Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--reportType": {
+					"description": "Тип отчёта о сравнении: по-умолчанию Full (полный) или указать Brief (краткий)",
+					"id": "/properties/default/--reporttype",
+					"title": "The --reportType Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--reportFormat": {
+					"description": "Формат файла отчета: по-умолчанию txt или указать mxl",
+					"id": "/properties/default/--reportformat",
+					"title": "The --reportFormat Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--extensionName": {
+					"description": "Имя расширения, если надо сравнить его вместо основной конфигурации",
+					"id": "/properties/default/--extensionname",
+					"title": "The --extensionName Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--firstFile": {
+					"description": "Путь к первому файлу cf/cfe: если не указать - используется основная конфигурация (расширение)",
+					"id": "/properties/default/--firstfile",
+					"title": "The --firstFile Schema",
+					"type": "string",
+					"default": ""
+				},
+				"Действие": {
+					"description": "lock|unlock",
+					"id": "/properties/default/действие",
+					"title": "The Действие Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--db": {
+					"description": "Имя информационной базы",
+					"id": "/properties/default/--db",
+					"title": "The --db Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--try": {
+					"description": "Число попыток обращения по протоколу rac/ras",
+					"id": "/properties/default/--try",
+					"title": "The --try Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--lockmessage": {
+					"description": "Сообщение блокировки",
+					"id": "/properties/default/--lockmessage",
+					"title": "The --lockmessage Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--lockstart": {
+					"description": "Время старта блокировки пользователей, время указываем как '2040-12-31T23:59:59'",
+					"id": "/properties/default/--lockstart",
+					"title": "The --lockstart Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--lockend": {
+					"description": "Время окончания блокировки пользователей, время указываем как '2040-12-31T23:59:59'",
+					"id": "/properties/default/--lockend",
+					"title": "The --lockend Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--lockstartat": {
+					"description": "Время старта блокировки через n сек",
+					"id": "/properties/default/--lockstartat",
+					"title": "The --lockstartat Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--with-nolock": {
+					"description": "Не блокировать сеансы (y/n). Может применяться для действия kill, т.к. по умолчанию, при его выполнении автоматически блокируется начало сеансов.\nПример: ... kill --with-nolock ...",
+					"id": "/properties/default/--with-nolock",
+					"title": "The --with-nolock Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--lockendclear": {
+					"description": "Очищать дату окончания блокировки (y/n). Может применяться для действия lock.\nПример: ... lock --with-nolock ...",
+					"id": "/properties/default/--lockendclear",
+					"title": "The --lockendclear Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--filter": {
+					"description": "Фильтр поиска сеансов. Предполагает возможность указания множественных вариантов фильтрации. Задается в формате '[filter1]|[filter2]|...|[filterN]'.\nСоставляющая фильтра задается в формате [[appid=приложение1[;приложение2]][[name=username1[;username2]]'.\nПока предусмотрено только два фильтра - по имени приложения (appid) и по имени пользователя 1С (name).\nДля фильтра по приложению доступны следующие имена: 1CV8 1CV8C WebClient Designer COMConnection WSConnection BackgroundJob WebServerExtension.\nИспользование wildchar/regex пока не предусмотрено. Регистронезависимо. Параметры должны разделяться через |.\nДействует для команд kill и closed.\nПример: ... kill -filter appid=Designer|name=регламент;администратор ...",
+					"id": "/properties/default/--filter",
+					"title": "The --filter Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--mode": {
+					"description": "Параметры проверок (через пробел).\n\tНапример, -ThinClient -WebClient -Server -ExternalConnection -ThickClientOrdinaryApplication\n\nДоступны следующие опции:\n\n    -ConfigLogIntegrity - проверка логической целостности конфигурации. Стандартная проверка, обычно выполняемая перед обновлением базы данных;\n    -IncorrectReferences - поиск некорректных ссылок. Поиск ссылок на удаленные объекты. Выполняется по всей конфигурации, включая права, формы, макеты, интерфейсы и т.д. Также осуществляется поиск логически неправильных ссылок;\n    -ThinClient - синтаксический контроль модулей для режима эмуляции среды управляемого приложения (тонкий клиент), выполняемого в файловом режиме;\n    -WebClient - синтаксический контроль модулей в режиме эмуляции среды веб-клиента;\n    -Server - синтаксический контроль модулей в режиме эмуляции среды сервера 1С:Предприятия;\n    -ExternalConnection - синтаксический контроль модулей в режиме эмуляции среды внешнего соединения, выполняемого в файловом режиме;\n    -ExternalConnectionServer - синтаксический контроль модулей в режиме эмуляции среды внешнего соединения, выполняемого в клиент-серверном режиме;\n    -MobileClient ‑ синтаксический контроль модулей в режиме эмуляции среды мобильного клиента;\n    -MobileClientStandalone ‑ синтаксический контроль модулей в режиме эмуляции среды мобильного клиента, работающего в автономном режиме;\n    -MobileAppClient - синтаксический контроль модулей в режиме эмуляции среды мобильного приложения, выполняемого в клиентском режиме запуска;\n    -MobileAppServer - синтаксический контроль модулей в режиме эмуляции среды мобильного приложения, выполняемого в серверном режиме запуска;\n    -ThickClientManagedApplication - синтаксический контроль модулей в режиме эмуляции среды управляемого приложения (толстый клиент), выполняемого в файловом режиме;\n    -ThickClientServerManagedApplication - синтаксический контроль модулей в режиме эмуляции среды управляемого приложения (толстый клиент), выполняемого в клиент-серверном режиме;\n    -ThickClientOrdinaryApplication - синтаксический контроль модулей в режиме эмуляции среды обычного приложения (толстый клиент), выполняемого в файловом режиме;\n    -ThickClientServerOrdinaryApplication - синтаксический контроль модулей в режиме эмуляции среды обычного приложения (толстый клиент), выполняемого в клиент-серверном режиме;\n    -DistributiveModules - поставка модулей без исходных текстов. В случае, если в настройках поставки конфигурации для некоторых модулей указана поставка без исходных текстов, проверяется возможность генерации образов этих модулей;\n    -UnreferenceProcedures - поиск неиспользуемых процедур и функций. Поиск локальных (не экспортных) процедур и функций, на которые отсутствуют ссылки. В том числе осуществляется поиск неиспользуемых обработчиков событий;\n    -HandlersExistence - проверка существования назначенных обработчиков. Проверка существования обработчиков событий интерфейсов, форм и элементов управления;\n    -EmptyHandlers - поиск пустых обработчиков. Поиск назначенных обработчиков событий, в которых не выполняется никаких действий. Существование таких обработчиков может привести к снижению производительности системы;\n    -ExtendedModulesCheck - проверка обращений к методам и свойствам объектов \"через точку\" (для ограниченного набора типов); проверка правильности строковых литералов - параметров некоторых функций, таких как ПолучитьФорму();\n    -CheckUseModality - режим поиска использования в модулях методов, связанных с модальностью. Опция используется только вместе с опцией -ExtendedModulesCheck.\n    -CheckUseSynchronousCalls ‑ режим поиска использования в модулях синхронных методов. Параметр используется только вместе с параметром -ExtendedModulesCheck.\n    -UnsupportedFunctional - выполняется поиск функциональности, которая не может быть выполнена на мобильном приложении. Проверка в этом режиме показывает:\n\n        наличие в конфигурации метаданных, классы которых не реализованы на мобильной платформе;\n        наличие в конфигурации планов обмена, у которых установлено свойство \"Распределенная информационная база\";\n        использование типов, которые не реализованы на мобильной платформе:\n            в свойствах \"Тип\" реквизитов метаданных, констант, параметров сеанса;\n            в свойстве \"Тип параметра команды\" метаданного \"Команда\";\n            в свойстве \"Тип\" реквизитов и колонок реквизита формы;\n        наличие форм с типом формы \"Обычная\";\n        наличие в форме элементов управления, которые не реализованы на мобильной платформе. Проверка не выполняется для форм, у которых свойство \"Назначение\" не предполагает использование на мобильном устройстве;\n        сложный состав рабочего стола (использование более чем одной формы).\n\n    -Extension <Имя расширения> - обработка расширения с указанным именем. Если расширение успешно обработано возвращает код возврата 0, в противном случае (если расширение с указанным именем не существует или в процессе работы произошли ошибки) - 1;\n    -AllExtensions - проверка всех расширений.\n\nВНИМАНИЕ, ВАЖНО: этот параметр --MODE должен быть последним среди параметров!",
+					"id": "/properties/default/--mode",
+					"title": "The --mode Schema",
+					"type": "array",
+					"items": {
+						"uniqueItems": true,
+						"type": "string",
+						"id": "/properties/default/--mode/items",
+						"default": ""
+					}
+				},
+				"--junitpath": {
+					"description": "Путь отчета в формате JUnit",
+					"id": "/properties/default/--junitpath",
+					"title": "The --junitpath Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--allure-results": {
+					"description": "Путь к каталогу сохранения результатов тестирования в формате Allure (xml)",
+					"id": "/properties/default/--allure-results",
+					"title": "The --allure-results Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--allure-results2": {
+					"description": "Путь к каталогу сохранения результатов тестирования в формате Allure2 (json)",
+					"id": "/properties/default/--allure-results2",
+					"title": "The --allure-results2 Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--testsuitename": {
+					"description": "Указать имя тестового набора в отчете JUnit для раздельной проверки в различных режимах",
+					"id": "/properties/default/--testsuitename",
+					"title": "The --testsuitename Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--groupbymetadata": {
+					"description": "Группировать проверки по метаданным конфигурации",
+					"id": "/properties/default/--groupbymetadata",
+					"title": "The --groupbymetadata Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--exception-file": {
+					"description": "Путь файла с указанием пропускаемых ошибок. Необязательный аргумент.\n\tФормат файла: в каждой строке файла указан текст пропускаемого исключения или его часть\n\tКодировка: UTF-8",
+					"id": "/properties/default/--exception-file",
+					"title": "The --exception-file Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--hide-exception": {
+					"description": "Не показывать исключения в отчетах",
+					"id": "/properties/default/--hide-exception",
+					"title": "The --hide-exception Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--validation-result": {
+					"description": "Путь к файлу, в который будут записаны результаты проверки проекта. Необязательный аргумент, если выбрана выгрузка в junit или allure.",
+					"id": "/properties/default/--validation-result",
+					"title": "The --validation-result Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--prev-validation-result": {
+					"description": "Путь к файлу с предыдущими результатами проверки проекта. Необязательный аргумент.\n\tЕсли заполнен, то результат будет записан как разность новых ошибок и старых.\n\tОшибки и предупреждения, которые есть в предыдущем файле, но которых нет в новом - будут помечены как passed (Исправлено).\n\tОшибки и предупреждения, которые есть только в новом файле результатов - будут помечены как failed (Ошибки) и broken (Предупреждения).\n\tВсе остальные ошибки и предупреждения, которые есть в обоих файлах, будут помечены как skipped (Пропущено).",
+					"id": "/properties/default/--prev-validation-result",
+					"title": "The --prev-validation-result Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--project-url": {
+					"description": "Путь к файлам проекта. Необязательный аргумент.\n\tЕсли заполнен, то в отчетах аллюр будут ссылки на конкретные строки с ошибками.\n\tПример: --project-url https://github.com/1C-Company/GitConverter/tree/master/GitConverter/src ",
+					"id": "/properties/default/--project-url",
+					"title": "The --project-url Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--EDTversion": {
+					"description": "Используемая версия EDT. Необязательный аргумент при указании --alwaysUseLastVersion.\n\tНеобходима, если зарегистрировано одновременно несколько версий.\n\tУзнать доступные версии можно командой \"ring help\"\n\tПример: --EDTversion 1.9.1",
+					"id": "/properties/default/--edtversion",
+					"title": "The --EDTversion Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--alwaysUseLastVersion": {
+					"description": "Всегда использовать последнюю версию EDT. Необязательный аргумент.",
+					"id": "/properties/default/--alwaysuselastversion",
+					"title": "The --alwaysUseLastVersion Schema",
+					"type": "boolean",
+					"default": false
+				},
+				"--workspace-location": {
+					"description": "Расположение рабочей области. Необязательный аргумент.\n\tЕсли не указан, то проверка выполняться не будет. Актуально для создания отчетов по существующему файлу результатов.",
+					"id": "/properties/default/--workspace-location",
+					"title": "The --workspace-location Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--project-list": {
+					"description": "Список папок, откуда загрузить проекты в формате EDT для проверки. Необязательный аргумент.\n\tОдновременно можно использовать только один аргумент: project-list или project-name-list",
+					"id": "/properties/default/--project-list",
+					"title": "The --project-list Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--project-name-list": {
+					"description": "Список имен проектов в текущей рабочей области, откуда загрузить проекты в формате EDT для проверки. Необязательный аргумент.\n\tОдновременно можно использовать только один аргумент: project-list или project-name-list.\n\n\tПримеры выполнения:\n\t\tvanessa-runner edt-validate --project-list D:/project-1 D:/project-2 --workspace-location D:/workspace\n\t\trunner edt-validate --allure-results \"D:/allure-results/\" ^\n\t\t\t--workspace-location \"D:/workspace\" ^\n\t\t\t--project-list \"D:/GIT_Repo/GitConverter/\" ^\n\t\t\t--exception-file \"D:/WORKDIR%excp.txt\" ^\n\t\t\t--validation-result \"D:/validation-result.txt\" ^\n\t\t\t--prev-validation-result \"D:/validation-result.txt\" ^\n\t\t\t--project-url https://github.com/1C-Company/GitConverter/tree/master/GitConverter/src\n\n\tВНИМАНИЕ! Параметры, которые перечислены далее, не используются.\n\n",
+					"id": "/properties/default/--project-name-list",
+					"title": "The --project-name-list Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--new-version": {
+					"description": "Номер версии, который нужно установить",
+					"id": "/properties/default/--new-version",
+					"title": "The --new-version Schema",
+					"type": "string",
+					"default": ""
+				},
+				"--check-module": {
+					"description": "Исправление версии в модулях объектов внешних обработок\\отчетов 1С (Ext/ObjectModule.bsl) или в общих модулях (Ext/Module.bsl)\n\tФормат версии в коде нужно задать в виде отдельной строки Версия = \"1.2.3.4\"; // или \"1.2.3\"",
+					"id": "/properties/default/--check-module",
+					"title": "The --check-module Schema",
+					"type": "boolean",
+					"default": false
 				}
 			}
 		},
