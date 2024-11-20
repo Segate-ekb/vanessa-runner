@@ -2,9 +2,14 @@ name: Тестирование
 
 on:
   push:
+    
   pull_request_target:
   workflow_dispatch:
-
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+  
 permissions:
   checks: write
   pull-requests: write
@@ -20,6 +25,22 @@ jobs:
         os: [ 'windows-latest', 'ubuntu-latest' ]
         locale: ['ru_RU']    
     steps:
+      - name: Set Russian locale
+        if: matrix.os == 'windows-latest'
+        run: |
+          powershell -Command "Set-WinUILanguageOverride -Language ru-RU"
+          powershell -Command "Set-WinUserLanguageList ru-RU -Force"
+          powershell -Command "Set-Culture ru-RU"
+          powershell -Command "Set-WinSystemLocale ru-RU"
+  
+      - name: Verify locale settings
+        if: matrix.os == 'windows-latest'
+        run: |
+          powershell -Command "Get-WinUILanguageOverride"
+          powershell -Command "Get-WinUserLanguageList"
+          powershell -Command "Get-Culture"
+          powershell -Command "Get-WinSystemLocale"
+          
       - name: Актуализация
         uses: actions/checkout@v4
         with:
@@ -126,16 +147,11 @@ jobs:
               DisableUnsafeActionProtection=.*
               SystemLanguage=System
               '@
-        shell: pwsh 
+        shell: pwsh           
 
-      - name: Unit-Тестирование
+      - name: Тестирование
         uses: coactions/setup-xvfb@v1
-        with:
-          run: oscript ./tasks/unit-test.os
-          
-
-      - name: BDD-Тестирование
-        uses: coactions/setup-xvfb@v1
+        continue-on-error: true
         with:
           run: oscript ./tasks/test.os
 

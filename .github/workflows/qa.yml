@@ -4,7 +4,11 @@ on:
   push:
   pull_request_target:
   workflow_dispatch:
-
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+  
 jobs:
   sonar:
     if: (github.repository == 'vanessa-opensource/vanessa-runner')
@@ -16,6 +20,22 @@ jobs:
         v8_version: ['8.3.23.1997']
         locale: ['ru_RU']   
     steps:
+      - name: Set Russian locale
+        if: matrix.os == 'windows-latest'
+        run: |
+          powershell -Command "Set-WinUILanguageOverride -Language ru-RU"
+          powershell -Command "Set-WinUserLanguageList ru-RU -Force"
+          powershell -Command "Set-Culture ru-RU"
+          powershell -Command "Set-WinSystemLocale ru-RU"
+  
+      - name: Verify locale settings
+        if: matrix.os == 'windows-latest'
+        run: |
+          powershell -Command "Get-WinUILanguageOverride"
+          powershell -Command "Get-WinUserLanguageList"
+          powershell -Command "Get-Culture"
+          powershell -Command "Get-WinSystemLocale"
+          
       - name: Актуализация
         uses: actions/checkout@v4
         with:
