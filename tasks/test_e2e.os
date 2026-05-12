@@ -31,6 +31,8 @@
 Команда.ДобавитьПараметр("-d tests/e2e/client-tests/cf -r");
 Команда.ДобавитьПараметр("-d tests/e2e/client-tests/cfe -r");
 Команда.ДобавитьПараметр("-d tests/e2e/client-tests/repo -r");
+Команда.ДобавитьПараметр("-d tests/e2e/client-tests/epf -r");
+Команда.ДобавитьПараметр("-d tests/e2e/client-tests/infobase -r");
 Команда.ДобавитьПараметр("--junit " + ПутьКОтчетуJUnit);
 Команда.ПоказыватьВыводНемедленно(Истина);
 
