@@ -1,4 +1,3 @@
-// BSLLS:CommentedCode-off
 // BSLLS:Typo-off
 // Хелпер для работы с фикстурой пустой файловой ИБ.
 //
