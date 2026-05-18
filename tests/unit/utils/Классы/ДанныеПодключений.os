@@ -1,3 +1,4 @@
+// BSLLS:CommentedCode-off
 // BSLLS:NumberOfValuesInStructureConstructor-off
 // BSLLS:MissingParameterDescription-off
 // BSLLS:MissingReturnedValueDescription-off

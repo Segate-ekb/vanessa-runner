@@ -1,3 +1,4 @@
+// BSLLS:LineLength-off
 // BSLLS:NumberOfValuesInStructureConstructor-off
 // BSLLS:MissingVariablesDescription-off Поля autumn
 // BSLLS:NumberOfOptionalParams-off

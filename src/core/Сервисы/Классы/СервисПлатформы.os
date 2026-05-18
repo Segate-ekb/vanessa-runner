@@ -1,3 +1,4 @@
+// BSLLS:LineLength-off
 // BSLLS:MissingVariablesDescription-off Поля autumn
 // BSLLS:NumberOfOptionalParams-off
 // BSLLS:Typo-off (&Лог/&Пластилин/&Напильник) и внутреннее состояние сервиса.

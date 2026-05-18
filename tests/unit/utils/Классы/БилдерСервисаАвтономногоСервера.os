@@ -1,3 +1,4 @@
+// BSLLS:Typo-off
 // BSLLS:MissingVariablesDescription-off
 // BSLLS:LatinAndCyrillicSymbolInWord-off
 // Билдер СервисАвтономногоСервера для юнит-тестов.

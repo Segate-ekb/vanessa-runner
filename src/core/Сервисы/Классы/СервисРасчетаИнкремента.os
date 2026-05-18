@@ -1,3 +1,4 @@
+// BSLLS:LineLength-off
 // BSLLS:MissingVariablesDescription-off Поля autumn
 // BSLLS:MagicNumber-off
 // BSLLS:NumberOfValuesInStructureConstructor-off (&Лог/&Пластилин/&Напильник) и внутреннее состояние сервиса.

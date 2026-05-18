@@ -1,3 +1,4 @@
+// BSLLS:LineLength-off
 // BSLLS:MissingVariablesDescription-off
 // BSLLS:MagicNumber-off
 // BSLLS:DuplicateStringLiteral-off
@@ -247,6 +248,7 @@
             Путь.Добавить("rtype");
             УстановитьВложенноеЗначение(Результат, Путь, "v1");
             Предупреждения.Добавить("  [updatedb] --v1 -> infobase.update.rtype = ""v1""");
+        // BSLLS:EmptyCodeBlock-off
         Иначе
             // флаги v1 и v2 отсутствуют - rtype не задается
         КонецЕсли;

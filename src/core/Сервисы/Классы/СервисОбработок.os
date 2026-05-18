@@ -1,3 +1,5 @@
+// BSLLS:LineLength-off
+// BSLLS:Typo-off
 // BSLLS:MissingVariablesDescription-off Поля autumn
 // BSLLS:NumberOfOptionalParams-off (&Лог/&Пластилин/&Напильник) и внутреннее состояние сервиса.
 // Сервис операций с внешними обработками (EPF).

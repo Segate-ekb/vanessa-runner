@@ -1,4 +1,5 @@
 // BSLLS:LineLength-off
+// BSLLS:Typo-off
 // BSLLS:NumberOfValuesInStructureConstructor-off
 // BSLLS:MissingVariablesDescription-off Поля autumn (&Лог/&Пластилин/&Напильник) и внутреннее состояние сервиса.
 // Сервис управления автономным сервером 1С (ibsrv).

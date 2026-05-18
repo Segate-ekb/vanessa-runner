@@ -1,3 +1,4 @@
+// BSLLS:Typo-off
 // BSLLS:ExportVariables-off
 // BSLLS:MissingVariablesDescription-off
 // BSLLS:NumberOfValuesInStructureConstructor-off
