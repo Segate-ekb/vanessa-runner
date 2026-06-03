@@ -239,3 +239,32 @@ vrunner cfe compare \
   --second-cfe ./new/MyExtension.cfe \
   --report-dir ./reports
 ```
+
+## check-applicability
+
+Проверяет применимость уже установленных в базе расширений без их загрузки. Запускается в режиме 1С:Предприятие и предназначена для конфигураций на базе БСП.
+
+```bash
+vrunner cfe check-applicability [опции]
+```
+
+### Опции
+
+| Опция | Переменная окружения | Описание |
+|-------|---------------------|----------|
+| `--ibconnection` | `VRUNNER_IBCONNECTION` | Строка подключения к ИБ (`/F<путь>` - файловая, `/S<сервер>\<база>` - серверная) |
+| `--db-user` | `VRUNNER_DBUSER` | Пользователь ИБ |
+| `--db-pwd` | `VRUNNER_DBPWD` | Пароль пользователя ИБ |
+| `--ibcmd` | - | Использовать `ibcmd` вместо Конфигуратора |
+| `--v8version` | `VRUNNER_V8VERSION` | Версия платформы 1С |
+| `--uccode` | `VRUNNER_UCCODE` | Код разрешения блокировки |
+| `--language` | `VRUNNER_LANGUAGE` | Язык платформы |
+| `--locale` | `VRUNNER_LOCALE` | Язык сеанса (локаль) |
+
+> Подробнее о подключении и ibcmd: [Подключение к базе данных →](./common-options)
+
+### Примеры
+
+```bash
+vrunner cfe check-applicability --ibconnection /F./ib
+```
