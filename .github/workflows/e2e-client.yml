@@ -150,13 +150,15 @@ jobs:
         uses: coactions/setup-xvfb@v1
         continue-on-error: true
         with:
-          run: oscript ./tasks/test_e2e.os
+          # Параллельный прогон: клиент 1С уже установлен, тест-файлы гоняются пулом
+          # процессов oneunit (по файлу). 8 воркеров для начала.
+          run: oscript ./tasks/test_e2e_parallel.os 8
 
       - name: Publish Test Report
         if: always()
         uses: mikepenz/action-junit-report@v6
         with:
-          report_paths: 'build/reports/junit.xml'
+          report_paths: 'build/reports/junit-*.xml'
           fail_on_failure: true
           require_passed_tests: true
           comment: true
