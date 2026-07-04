@@ -155,7 +155,7 @@ jobs:
         with:
           # Параллельный прогон: клиент 1С уже установлен, тест-файлы гоняются пулом
           # процессов oneunit (по файлу). 8 воркеров для начала.
-          run: oscript ./tasks/test_e2e_parallel.os 8
+          run: oscript ./tasks/test_e2e_parallel.os 4
 
       - name: Publish Test Report
         if: always()
