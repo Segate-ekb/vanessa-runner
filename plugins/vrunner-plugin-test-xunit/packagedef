@@ -1,0 +1,14 @@
+// Встроенный плагин vrunner: подкоманда `test xunit` (тестирование xUnitFor1C).
+// Маркеры: зависимость от хоста vanessa-runner + зависимость от блока vrunner-plugin-test.
+
+Описание.Имя("vrunner-plugin-test-xunit")
+		.Версия("0.1.0")
+		.ВерсияСреды("2.0.0")
+		.Описание("Подкоманда test xunit - запуск тестов фреймворком xUnitFor1C.")
+
+		.ЗависитОт("vanessa-runner")
+		.ЗависитОт("vrunner-plugin-test")
+
+		.ВключитьФайл("ПодкомандаTestXunit.os")
+		.ВключитьФайл("package-loader.os")
+		.ВключитьФайл("packagedef")

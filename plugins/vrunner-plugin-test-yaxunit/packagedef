@@ -1,0 +1,14 @@
+// Встроенный плагин vrunner: подкоманда `test yaxunit` (модульные тесты YAxUnit).
+// Маркеры: зависимость от хоста vanessa-runner + зависимость от блока vrunner-plugin-test.
+
+Описание.Имя("vrunner-plugin-test-yaxunit")
+		.Версия("0.1.0")
+		.ВерсияСреды("2.0.0")
+		.Описание("Подкоманда test yaxunit - запуск модульных тестов фреймворком YAxUnit.")
+
+		.ЗависитОт("vanessa-runner")
+		.ЗависитОт("vrunner-plugin-test")
+
+		.ВключитьФайл("ПодкомандаTestYaxunit.os")
+		.ВключитьФайл("package-loader.os")
+		.ВключитьФайл("packagedef")

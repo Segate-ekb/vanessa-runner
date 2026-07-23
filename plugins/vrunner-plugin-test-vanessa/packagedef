@@ -1,0 +1,14 @@
+// Встроенный плагин vrunner: подкоманда `test vanessa` (сценарное тестирование Vanessa).
+// Маркеры: зависимость от хоста vanessa-runner + зависимость от блока vrunner-plugin-test.
+
+Описание.Имя("vrunner-plugin-test-vanessa")
+		.Версия("0.1.0")
+		.ВерсияСреды("2.0.0")
+		.Описание("Подкоманда test vanessa - запуск сценарного тестирования Vanessa Automation/BDD.")
+
+		.ЗависитОт("vanessa-runner")
+		.ЗависитОт("vrunner-plugin-test")
+
+		.ВключитьФайл("ПодкомандаTestVanessa.os")
+		.ВключитьФайл("package-loader.os")
+		.ВключитьФайл("packagedef")
